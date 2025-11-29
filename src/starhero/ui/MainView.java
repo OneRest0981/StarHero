@@ -91,8 +91,7 @@ public class MainView {
         playerNameLabel.setText("玩家：" + player.getName());
         playerLevelLabel.setText("等级：" + player.getLevel());
         playerHpLabel.setText("生命：" + player.getCurrentHp() + "/" + player.getBaseStats().getMaxHp());
-        // 如果还没做金币，这行可以先注释掉
-        // playerGoldLabel.setText("金币：" + player.getGold());
+        playerGoldLabel.setText("金币：" + player.getGold());
     }
 
     public void refreshMonster(Monster monster, int stage) {

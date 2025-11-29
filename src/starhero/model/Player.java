@@ -1,12 +1,13 @@
 package starhero.model;
 
 import java.math.BigDecimal;
+import java.util.Random;
 
 public class Player {
 
     // 信息
-    private int id;
-    private String name;
+    private final int id;
+    private final String name;
 
     // 等级经验
     private int level;
@@ -51,6 +52,12 @@ public class Player {
     public Player(int id, String name) {
         this.id = id;
         this.name = name;
+
+        this.baseStats = new Stats();
+        this.bonusStats = new Stats();
+        this.finalStats = new Stats();
+
+        this.currentHp = 1;
     }
 
     // 方法
@@ -68,8 +75,8 @@ public class Player {
 
 
 
-    public void addMoney(BigDecimal money){
-        this.gold = this.gold.add(money);
+    public void addGold(BigDecimal gold){
+        this.gold = this.gold.add(gold);
     }
 
     public void setGold(BigDecimal gold){
@@ -109,6 +116,38 @@ public class Player {
         finalStats.setAttack(baseStats.getAttack() + bonusStats.getAttack());
     }
 
+    public void recalculateStats() {
+        // 清空baseStats
+        baseStats = new Stats();
+
+        // Star 提供属性
+        if (star != null)
+            baseStats.add(star.getBaseStats());
+
+        // 属性点属性
+        baseStats.addMaxHp(vitPoint * 2);
+        baseStats.addArmor(vitPoint * 2);
+        baseStats.addAttack(strPoint *2);
+        baseStats.addAttackSpeed(agiPoint * 0.001);
+        baseStats.addCritChance(agiPoint * 0.1);
+        baseStats.addCritDamage(strPoint * 0.1);
+        baseStats.addGoldBonus(lukPoint * 0.1);
+        baseStats.addExpBonus(lukPoint*0.1);
+
+        // bonus额外属性
+
+        // 最终属性 finalStats = baseStats + bonusStats
+        finalStats = new Stats();
+        finalStats.add(baseStats);
+        finalStats.add(bonusStats); // TODO: 装备系统
+
+        // 修正当前生命
+        if (currentHp > finalStats.getMaxHp())
+            currentHp = finalStats.getMaxHp();
+
+
+
+    }
 
 
 
@@ -120,9 +159,30 @@ public class Player {
     }
 
     // 造成伤害 等待战斗公式
-    public void attack(Monster target) {
-        target.takeDamage(finalStats.getAttack());
+    public double attack(Monster target) {
+
+        double aDamage = finalStats.getAttack();
+        double aCritChance = finalStats.getCritChance() / 100 + 1;
+        double aCritDamage = finalStats.getCritDamage() / 100 + 1;
+
+        double targetArmor = target.getStats().getArmor();
+
+        // 基础伤害
+        double defaultResult = aDamage * 100.0 / (100.0 + targetArmor);;
+
+        // 暴击判定
+        if(Math.random() < aCritChance) {
+            double critDamage = defaultResult + defaultResult * aCritDamage;
+            target.takeDamage(critDamage);
+            return critDamage;
+        }else {
+            target.takeDamage(finalStats.getAttack());
+            return finalStats.getAttack();
+
+        }
     }
+
+
     // 受到伤害
     public void takeDamage(double amount) {
         currentHp -= amount;

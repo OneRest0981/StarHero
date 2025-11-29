@@ -24,6 +24,9 @@ public class StarHeroApp extends Application{
     @Override
     public void start(Stage stage){
         Player player = new Player(1, "Test");
+        player.recalculateStats();
+        player.healToFull();
+
         StageManager stageManager = new StageManager();
 
         MainView mainView = new MainView();

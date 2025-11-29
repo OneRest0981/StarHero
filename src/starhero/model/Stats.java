@@ -106,4 +106,44 @@ public class Stats {
     public void setExpBonus(double expBonus) {
         this.expBonus = expBonus;
     }
+
+    // Adder
+    public void addMaxHp(double maxHp) {
+        this.maxHp += maxHp;
+    }
+    public void addArmor(double armor) {
+        this.armor += armor;
+    }
+    public void addAttack(double attack){
+        this.attack += attack;
+    }
+    public void addAttackSpeed(double attackSpeed){
+        this.attackSpeed += attackSpeed;
+    }
+    public void addCritChance(double critChance) {
+        this.critChance += critChance;
+    }
+    public void addCritDamage(double critDamage) {
+        this.critDamage += critDamage;
+    }
+    public void addGoldBonus(double goldBonus) {
+        this.goldBonus += goldBonus;
+    }
+    public void addExpBonus (double expBonus) {
+        this.expBonus += expBonus;
+    }
+
+
+    public void add(Stats other) {
+        this.maxHp += other.maxHp;
+        this.armor += other.armor;
+        this.attack += other.attack;
+        this.attackSpeed += other.attackSpeed;
+        this.critDamage += other.critDamage;
+        this.critChance += other.critChance;
+        this.goldBonus += other.goldBonus;
+        this.expBonus += other.expBonus;
+
+    }
+    public void clear(){};
 }

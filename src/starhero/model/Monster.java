@@ -99,8 +99,12 @@ public class Monster {
     }
 
     // 攻击
-    public double attack() {
-        return stats.getAttack();
+    public double attack(Player target) {
+
+        double attack = stats.getAttack();
+        double targetArmor = target.getFinalStats().getArmor();
+        double damage = attack * 100.0 / (100.0 + targetArmor);
+        return damage;
     }
 
     // 死亡
