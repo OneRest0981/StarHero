@@ -13,7 +13,7 @@ public class Player {
     private int level;
     private long exp;
     private long expToNextLevel;
-    private BigDecimal gold;
+    private BigDecimal gold = BigDecimal.valueOf(0);
 
     // 星星 职业
     private Star star;
@@ -204,13 +204,13 @@ public class Player {
     public boolean hasItem(Item item) {return false;}
 
     // 职业
-    public void chooseStar(Star star) {}
-
-    public Star getStar() {return star;}
-
-    public Stats getFinalStats() {return null;}
-
-    public Stats getBaseStats() {
-        return new Stats(100, 1, 1, 1, 1, 1, 1, 1);
+    public void chooseStar(Star star) {
+        this.star = star;
     }
+
+    public Star getStar() { return star; }
+
+    public Stats getFinalStats() { return finalStats; }
+
+    public Stats getBaseStats() { return baseStats; }
 }

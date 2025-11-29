@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import starhero.data.StarData;
 import starhero.game.GameLoop;
 import starhero.game.StageManager;
 import starhero.model.Player;
@@ -24,7 +25,9 @@ public class StarHeroApp extends Application{
     @Override
     public void start(Stage stage){
         Player player = new Player(1, "Test");
+        player.chooseStar(StarData.defaultStar());
         player.recalculateStats();
+
         player.healToFull();
 
         StageManager stageManager = new StageManager();
