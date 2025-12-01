@@ -8,6 +8,8 @@ import starhero.ui.MainView;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
+import static starhero.util.Format.doubleToInt;
+
 
 public class GameLoop {
     private Player player; // 当前玩家
@@ -97,7 +99,7 @@ public class GameLoop {
         }
 
         // 玩家攻击怪物
-        double dmgToMonster =player.attack(currentMonster);
+        int dmgToMonster = doubleToInt(player.attack(currentMonster));
         logBuilder.append("你对 ")
                 .append(currentMonster.getName())
                 .append(" 造成了 ")
@@ -105,7 +107,7 @@ public class GameLoop {
                 .append(" 点伤害\n");
 
         // 怪物攻击玩家
-        double dmgToPlayer = currentMonster.attack(player);
+        int dmgToPlayer =  doubleToInt(currentMonster.attack(player));
         player.takeDamage(dmgToPlayer);
         logBuilder.append(currentMonster.getName())
                 .append(" 对你造成了 ")

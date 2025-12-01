@@ -12,109 +12,48 @@ import javafx.scene.layout.VBox;
 import starhero.model.Player;
 import starhero.model.Monster;
 
+import static starhero.util.Format.doubleToInt;
+
 public class MainView {
 
-    // ===== 玩家信息 =====
-    private Label playerNameLabel = new Label("玩家：");
-    private Label playerLevelLabel = new Label("等级：");
-    private Label playerHpLabel = new Label("生命：");
-    private Label playerGoldLabel = new Label("金币：");
-
-    // ===== 怪物信息 =====
-    private Label stageLabel = new Label("关卡：");
-    private Label monsterNameLabel = new Label("怪物：");
-    private Label monsterHpLabel = new Label("怪物生命：");
-
-    // ===== 战斗日志 =====
+    // 战斗日志
     private TextArea logArea = new TextArea();
 
-    // ===== 控制按钮 =====
-    private Button startButton = new Button("开始");
-    private Button stopButton = new Button("停止");
+    // 控制按钮
+    private Button prevButton = new Button("上一层");
+    private Button nextButton = new Button("下一层");
 
-    // ===== 根节点 =====
+    // 属性购买按钮
+    private Button maxHpButton = new Button("最大生命");
+    private Button armorButton = new Button("护甲");
+    private Button attackButton = new Button("攻击伤害");
+    private Button attackSpeedButton = new Button("攻击速度");
+    private Button critChanceButton = new Button("暴击几率");
+    private Button critDamageButton = new Button("暴击伤害");
+    private Button goldBonusButton = new Button("金币加成");
+    private Button expBonusButton = new Button("经验加成");
+
+    // 根节点
     private BorderPane root = new BorderPane();
 
 
-    // ===== 构造器 =====
+    // 构造
     public MainView() {
 
-        // --------------------
-        // 左侧玩家信息布局
-        // --------------------
-        VBox playerBox = new VBox(8);
-        playerBox.setPadding(new Insets(10));
-        playerBox.getChildren().addAll(
-                playerNameLabel,
-                playerLevelLabel,
-                playerHpLabel,
-                playerGoldLabel
-        );
+    VBox leftBox = new VBox(10);
+    leftBox.getChildren().addAll(prevButton, nextButton, logArea);
+    root.setLeft(leftBox);
 
-        // --------------------
-        // 右侧怪物信息布局
-        // --------------------
-        VBox monsterBox = new VBox(8);
-        monsterBox.setPadding(new Insets(10));
-        monsterBox.getChildren().addAll(
-                stageLabel,
-                monsterNameLabel,
-                monsterHpLabel
-        );
+    VBox rightBox = new VBox(10);
 
-        // --------------------
-        // 中间日志区域
-        // --------------------
-        logArea.setEditable(false);
-        logArea.setWrapText(true);
 
-        // --------------------
-        // 底部按钮区域
-        // --------------------
-        HBox buttonBox = new HBox(10);
-        buttonBox.setAlignment(Pos.CENTER);
-        buttonBox.setPadding(new Insets(10));
-        buttonBox.getChildren().addAll(startButton, stopButton);
-
-        // --------------------
-        // 整体放入 BorderPane
-        // --------------------
-        root.setLeft(playerBox);
-        root.setRight(monsterBox);
-        root.setCenter(logArea);
-        root.setBottom(buttonBox);
     }
 
 
-    // ===== UI 更新方法 =====
-    public void refreshPlayer(Player player) {
-        playerNameLabel.setText("玩家：" + player.getName());
-        playerLevelLabel.setText("等级：" + player.getLevel());
-        playerHpLabel.setText("生命：" + player.getCurrentHp() + "/" + player.getBaseStats().getMaxHp());
-        playerGoldLabel.setText("金币：" + player.getGold());
-    }
 
-    public void refreshMonster(Monster monster, int stage) {
-        stageLabel.setText("关卡：" + stage);
-        monsterNameLabel.setText("怪物：" + monster.getName());
-        monsterHpLabel.setText("怪物生命：" + monster.getCurrentHP() + "/" + monster.getStats().getMaxHp());
-    }
 
-    public void appendLog(String msg) {
-        logArea.appendText(msg + "\n");
-    }
 
-    // 返回根节点给 JavaFX 主窗口使用
-    public Parent getRoot() {
-        return root;
-    }
 
-    // 给外部访问 start/stop 按钮
-    public Button getStartButton() {
-        return startButton;
-    }
 
-    public Button getStopButton() {
-        return stopButton;
-    }
+
 }

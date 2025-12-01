@@ -1,7 +1,6 @@
 package starhero.model;
 
 import java.math.BigDecimal;
-import java.util.Random;
 
 public class Player {
 

@@ -1,5 +1,6 @@
 package starhero.game;
 
+import starhero.data.MonsterData;
 import starhero.model.Monster;
 import starhero.model.Stats;
 
@@ -25,7 +26,7 @@ public class StageManager {
     }
 
     public Monster generateMonster(int stage) {
-        return new  Monster(stage, "测试怪物", stage, new Stats(stage*10, 1, 1, 1, 1, 1), BigDecimal.valueOf(1), 1);
+        return MonsterData.defaultMonster(stage);
     }
 
 

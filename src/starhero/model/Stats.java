@@ -41,13 +41,11 @@ public class Stats {
     }
 
     // 怪物用
-    public Stats (double maxHp, double armor, double attack, double attackSpeed, double critChance, double critDamage) {
+    public Stats (double maxHp, double armor, double attack, double attackSpeed) {
         this.maxHp = maxHp;
         this.armor = armor;
         this.attack = attack;
         this.attackSpeed = attackSpeed;
-        this.critChance = critChance;
-        this.critDamage = critDamage;
     }
 
     public Stats () {}  // 无参构造
