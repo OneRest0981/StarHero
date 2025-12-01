@@ -1,0 +1,162 @@
+/* 整个窗口的基础样式 */
+.root {
+    /* 深色背景，避免底部大块白色 */
+    -fx-background-color: linear-gradient(to bottom, #070b1e, #02030a);
+
+    /* 统一字体 */
+    -fx-font-family: "Microsoft YaHei UI", "Segoe UI", sans-serif;
+    -fx-text-fill: #f5f7ff;
+}
+
+/* 所有按钮的基础样式 */
+.button {
+    -fx-background-color: linear-gradient(to bottom, #3b4dff, #5b7cff);
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6;
+    -fx-padding: 6 14 6 14;
+    -fx-border-color: rgba(255, 255, 255, 0.18);
+    -fx-border-radius: 6;
+    -fx-border-width: 1;
+}
+
+/* 鼠标移上去的效果 */
+.button:hover {
+    -fx-background-color: linear-gradient(to bottom, #4c5eff, #7b8fff);
+}
+
+/* 按下去的效果 */
+.button:pressed {
+    -fx-translate-y: 1;
+    -fx-background-color: linear-gradient(to bottom, #2a3cff, #4a5cff);
+}
+
+/* 文本输入/文本区域（你下面的战斗日志用的 TextArea） */
+.text-area {
+    -fx-control-inner-background: rgba(10, 15, 35, 0.95);
+    -fx-text-fill: #c7d0ff;
+    -fx-font-size: 12px;
+    -fx-border-color: rgba(255, 255, 255, 0.1);
+    -fx-border-width: 1;
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+}
+/* ========================= */
+/*       战斗区：血条         */
+/* ========================= */
+
+/* 基础：所有进度条的槽（灰色底 + 圆角） */
+.progress-bar {
+    -fx-control-inner-background: rgba(255, 255, 255, 0.12); /* 槽的颜色 */
+    -fx-background-insets: 0;
+    -fx-background-radius: 999;
+    -fx-padding: 2;
+}
+
+.progress-bar > .track {
+    -fx-background-radius: 999;
+}
+
+/* 这里只保留圆角，不再改颜色 */
+.progress-bar > .bar {
+    -fx-background-radius: 999;
+}
+
+/* 玩家血条：直接用纯色 accent，确保能看到 */
+.player-hp-bar {
+    -fx-accent: #3bd4ff;
+}
+
+/* 怪物血条：红色 */
+.monster-hp-bar {
+    -fx-accent: #ff4a6a;
+}
+/* ========================= */
+/*        右侧升级面板        */
+/* ========================= */
+
+.upgrade-panel {
+    -fx-background-color: rgba(15, 15, 30, 0.95);
+    -fx-background-radius: 16;
+    -fx-border-radius: 16;
+    -fx-border-color: rgba(255, 255, 255, 0.08);
+    -fx-border-width: 1;
+    -fx-padding: 16;
+    -fx-spacing: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.7), 20, 0.35, 0, 6);
+}
+
+/* 金币文字 */
+.gold-label {
+    -fx-font-size: 13px;
+    -fx-text-fill: #ffd94a;
+    -fx-font-weight: bold;
+}
+
+/* 升级按钮（覆盖全局 .button，让它更像“加点”按钮） */
+.upgrade-button {
+    -fx-background-color: linear-gradient(to bottom, #ffb84a, #ff9e2b);
+    -fx-text-fill: #1b1300;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-color: rgba(255, 255, 255, 0.25);
+    -fx-border-width: 1;
+}
+
+.upgrade-button:hover {
+    -fx-background-color: linear-gradient(to bottom, #ffd363, #ffb13e);
+}
+
+.upgrade-button:pressed {
+    -fx-translate-y: 1;
+    -fx-background-color: linear-gradient(to bottom, #e89d3d, #d87a1f);
+}
+/* ========================= */
+/*        左下日志面板        */
+/* ========================= */
+
+.log-panel {
+    -fx-background-color: rgba(15, 15, 30, 0.95);
+    -fx-background-radius: 16;
+    -fx-border-radius: 16;
+    -fx-border-color: rgba(255, 255, 255, 0.08);
+    -fx-border-width: 1;
+    -fx-padding: 16;
+    -fx-spacing: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.7), 20, 0.35, 0, 6);
+}
+
+/* 日志里的文本区域 */
+.battle-log-area {
+    -fx-control-inner-background: rgba(5, 8, 20, 0.98);
+    -fx-text-fill: #c7d0ff;
+    -fx-font-size: 12px;
+    -fx-padding: 8;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: rgba(255, 255, 255, 0.06);
+    -fx-border-width: 1;
+}
+
+/* “上一层 / 下一层”按钮：保持蓝色，但更像控制按钮 */
+.stage-button {
+    -fx-background-color: linear-gradient(to bottom, #4c5eff, #7b8fff);
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-color: rgba(255, 255, 255, 0.25);
+    -fx-border-width: 1;
+}
+
+.stage-button:hover {
+    -fx-background-color: linear-gradient(to bottom, #6a7dff, #9aa6ff);
+}
+
+.stage-button:pressed {
+    -fx-translate-y: 1;
+    -fx-background-color: linear-gradient(to bottom, #3946d8, #5a6ae0);
+}
+

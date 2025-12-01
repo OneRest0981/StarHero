@@ -8,6 +8,8 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import starhero.model.Monster;
 import starhero.model.Player;
 
@@ -16,7 +18,12 @@ import java.util.Objects;
 import static starhero.util.Format.doubleToInt;
 
 public class BattleView {
-    private HBox root = new HBox(50);
+
+    // 现在的根节点改成 StackPane，用来叠加：背景 + 蒙版 + 内容
+    private StackPane root = new StackPane();
+
+    // 原来的 HBox 作为“内容层”，承载玩家/怪物布局
+    private HBox contentBox = new HBox(50);
 
     private static Label playerNameLabel = new Label("玩家");
     private static Label playerHpLabel = new Label("Hp");
@@ -28,9 +35,20 @@ public class BattleView {
     private static ProgressBar monsterHpBar = new ProgressBar(1.0);
     private static ImageView monsterImageView = new ImageView();
 
+    // 蒙版
+    private Rectangle overlay = new Rectangle();
 
     // 顶部战斗区域
     public BattleView() {
+        // Lable调整
+        playerNameLabel.getStyleClass().add("battle-name-label");
+        monsterNameLabel.getStyleClass().add("battle-name-label");
+        playerHpLabel.getStyleClass().add("battle-hp-label");
+        monsterHpLabel.getStyleClass().add("battle-hp-label");
+        playerHpBar.getStyleClass().add("player-hp-bar");
+        // 血条样式
+        monsterHpBar.getStyleClass().add("monster-hp-bar");
+
         // 玩家贴图
         playerImageView.setFitWidth(128);
         playerImageView.setFitHeight(128);
@@ -75,9 +93,9 @@ public class BattleView {
 
 
         // 整体 HBox
-        root.setPadding(new Insets(50));
-        root.setAlignment(Pos.CENTER);
-        root.getChildren().addAll(playerBox, monsterBox);
+        contentBox.setPadding(new Insets(50));
+        contentBox.setAlignment(Pos.CENTER);
+        contentBox.getChildren().addAll(playerBox, monsterBox);
 
         // 背景
         Image bgImage = new Image(
@@ -99,6 +117,17 @@ public class BattleView {
         );
         root.setBackground(new Background(backgroundImage));
 
+        //  蒙版
+        overlay.setFill(Color.rgb(0, 0, 0, 0.3));
+
+        // 蒙版尺寸跟着根节点变
+        overlay.widthProperty().bind(root.widthProperty());
+        overlay.heightProperty().bind(root.heightProperty());
+
+        // =========================
+        //  叠加顺序：背景(在 Background 里) -> overlay -> 内容
+        // =========================
+        root.getChildren().addAll(overlay, contentBox);
 
     }
 

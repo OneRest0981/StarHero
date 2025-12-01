@@ -7,7 +7,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import starhero.game.StageManager;
 import starhero.model.Player;
 import starhero.util.Format;
 
@@ -28,6 +27,14 @@ public class BottomRightView {
     private Button expBonusButton = new Button("经验加成");
 
     public BottomRightView(Player player){
+        // 右侧升级面板整体样式
+        root.getStyleClass().add("upgrade-panel");
+        HBox goldRow = new HBox();
+        goldRow.setAlignment(Pos.CENTER_RIGHT);
+        goldRow.getChildren().add(goldLable);
+
+        // 金币文字样式
+        goldLable.getStyleClass().add("gold-label");
 
         // 创建每排的横 HBOX
         HBox row1 = new HBox(20);
@@ -38,13 +45,25 @@ public class BottomRightView {
         row3.getChildren().addAll(critChanceButton, critDamageButton);
         HBox row4 = new HBox(20);
         row4.getChildren().addAll(goldBonusButton, expBonusButton);
+        // 升级按钮统一样式类
+        maxHpButton.getStyleClass().add("upgrade-button");
+        armorButton.getStyleClass().add("upgrade-button");
+        attackButton.getStyleClass().add("upgrade-button");
+        attackSpeedButton.getStyleClass().add("upgrade-button");
+        critChanceButton.getStyleClass().add("upgrade-button");
+        critDamageButton.getStyleClass().add("upgrade-button");
+        goldBonusButton.getStyleClass().add("upgrade-button");
+        expBonusButton.getStyleClass().add("upgrade-button");
+
+
 
         // 设置按钮大小
         Format.uniformButtonWidth(maxHpButton, armorButton, attackButton, attackSpeedButton, critChanceButton, critDamageButton, goldBonusButton, expBonusButton);
 
         // 合并至root
         root.setAlignment(Pos.TOP_CENTER);
-        root.getChildren().addAll(goldLable, row1, row2, row3, row4);
+        root.setSpacing(16);
+        root.getChildren().addAll(goldRow, row1, row2, row3, row4);
         root.setPadding(new Insets(50));
 
         maxHpButton.setOnAction(
@@ -85,15 +104,4 @@ public class BottomRightView {
     public static void refreshGold(Player player){
         goldLable.setText("金币: " + player.getGold().toString());
     }
-
-
-
-
-
-
-
-
-
-
-
 }

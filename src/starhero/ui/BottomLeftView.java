@@ -26,6 +26,12 @@ public class BottomLeftView {
 
 
     public BottomLeftView(Player player){
+        root.getStyleClass().add("log-panel"); // 增加root样式
+        logArea.getStyleClass().add("battle-log-area"); // 增加logArea样式
+        prevButton.getStyleClass().add("stage-button"); // 上下层按钮样式
+        nextButton.getStyleClass().add("stage-button");
+
+
 
         // 创建一个横 HBox 控制按钮
         HBox stageControl = new HBox(20);
