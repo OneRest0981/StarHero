@@ -18,7 +18,8 @@ public class MonsterData {
 
                 ),
                 BigDecimal.valueOf(stage),
-                10L * stage
+                10L * stage,
+                "/images/monster/default.png"
                 );
     }
 

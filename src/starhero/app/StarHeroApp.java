@@ -32,19 +32,17 @@ public class StarHeroApp extends Application{
 
         StageManager stageManager = new StageManager();
 
-        MainView mainView = new MainView();
+        MainView mainView = new MainView(player);
         GameLoop gameLoop = new GameLoop(player, stageManager, mainView);
 
-        // 按钮控制
-        mainView.getStartButton().setOnAction(e -> gameLoop.start());
-        mainView.getStopButton().setOnAction(e -> gameLoop.stop());
-
         // 初始化
-        mainView.refreshPlayer(player);
+        gameLoop.start();
 
         // 显示界面
-        Scene scene = new Scene(mainView.getRoot(), 1300, 500);
+        Scene scene = new Scene(mainView.getRoot(), 1280, 720);
         stage.setScene(scene);
+        stage.setResizable(false);      // 不允许用户拖动改大小
+
         stage.setTitle("星之勇者 Star Hero");
         stage.show();
 

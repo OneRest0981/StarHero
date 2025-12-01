@@ -9,7 +9,7 @@ public class StarData {
 
         return new Star(1, "小星", "最平衡的星星",
                 new Stats(
-                        20.0,
+                        50.0,
                         5.0,
                         5.0,
                         1.0,
@@ -17,7 +17,7 @@ public class StarData {
                         110.0,
                         5.0,
                         20.0
-                )
+                ), "/images/star/default.png"
         );
 
     }
@@ -28,7 +28,7 @@ public class StarData {
 
         return new Star(2, "战斗星", "崇尚战士的一颗星",
                 new Stats(
-                        30,
+                        70,
                         10,
                         10,
                         0.8,
@@ -36,7 +36,7 @@ public class StarData {
                         100,
                         0,
                         0
-                )
+                ), "/images/star/default.png"
         );
     }
 

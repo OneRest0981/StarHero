@@ -11,6 +11,7 @@ public class Monster {
     private double currentHP;
     private BigDecimal goldReward;
     private long expReward;
+    private String spritePath;
 
     /**
      *
@@ -21,7 +22,7 @@ public class Monster {
      * @param goldReward 金币奖励
      * @param expReward 经验奖励
      */
-    public Monster(int id, String name, int level, Stats stats, BigDecimal goldReward, long expReward) {
+    public Monster(int id, String name, int level, Stats stats, BigDecimal goldReward, long expReward, String spritePath) {
         this.id = id;
         this.name = name;
         this.level = level;
@@ -29,6 +30,7 @@ public class Monster {
         this.currentHP = stats.getMaxHp();
         this.goldReward = goldReward;
         this.expReward = expReward;
+        this.spritePath = spritePath;
     }
     public Monster() {}
 
@@ -117,5 +119,8 @@ public class Monster {
         this.currentHP = stats.getMaxHp();
     }
 
-
+    // 获得贴图路径
+    public String getSpritePath() {
+        return this.spritePath;
+    }
 }

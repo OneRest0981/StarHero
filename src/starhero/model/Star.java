@@ -2,10 +2,11 @@ package starhero.model;
 
 public class Star {
 
-    int id;
-    String name;
-    String description;
-    Stats baseStats;
+    private int id;
+    private String name;
+    private String description;
+    private Stats baseStats;
+    private String spritePath;
 
     /**
      * 构建函数
@@ -14,11 +15,12 @@ public class Star {
      * @param description 描述
      * @param baseStats 基础属性
      */
-    public Star(int id, String name, String description, Stats baseStats) {
+    public Star(int id, String name, String description, Stats baseStats, String spritePath) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.baseStats = baseStats;
+        this.spritePath = spritePath;
     }
     public Star() {}
 
@@ -31,6 +33,15 @@ public class Star {
     public void setId(int id) {
         this.id = id;
     }
+
+    public String getSpritePath() {
+        return spritePath;
+    }
+
+    public void setSpritePath(String path) {
+        this.spritePath = path;
+    }
+
 
     public String getName() {
         return name;

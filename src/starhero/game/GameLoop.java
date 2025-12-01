@@ -3,6 +3,7 @@ package starhero.game;
 import javafx.application.Platform;
 import starhero.model.Monster;
 import starhero.model.Player;
+import starhero.ui.BottomLeftView;
 import starhero.ui.MainView;
 
 import java.util.concurrent.Executors;
@@ -12,15 +13,14 @@ import static starhero.util.Format.doubleToInt;
 
 
 public class GameLoop {
-    private Player player; // 当前玩家
+    private final Player player; // 当前玩家
     private Monster currentMonster; // 当前正在战斗的怪物
-    private StageManager stageManager; // 负责生成怪物和记录关卡
+    private final StageManager stageManager; // 负责生成怪物和记录关卡
 
     private java.util.concurrent.ScheduledExecutorService executor; // 定时线程池
     private boolean running; // 当前 GameLoop 是否在运行
-    private final long TICK_INTERVAL_MILLIS = 1000; // 每次战斗 tick 的间隔 (单位 毫秒)
 
-    private MainView mainView;
+    private final MainView mainView;
 
     public GameLoop(Player player, StageManager stageManager, MainView mainView){
         this.player = player;
@@ -41,9 +41,11 @@ public class GameLoop {
         running = true;
 
         // 初始化怪物
-        currentMonster = stageManager.generateMonster(stageManager.getCurrentStage());
+        currentMonster = StageManager.generateMonster(StageManager.getCurrentStage());
 
         // 定时执行任务
+        // 每次战斗 tick 的间隔 (单位 毫秒)
+        long TICK_INTERVAL_MILLIS = 1000;
         executor.scheduleAtFixedRate(() -> {
             try {
                 tick(); // 执行战斗逻辑
@@ -55,8 +57,8 @@ public class GameLoop {
             // 主线程中更新log ui 等
             Platform.runLater(() -> {
                 // 更新UI
-                mainView.refreshPlayer(player);
-                mainView.refreshMonster(currentMonster, stageManager.getCurrentStage());
+                mainView.refreshPlayerBattle(player);
+                mainView.refreshMonsterBattle(currentMonster);
 
 
 
@@ -94,8 +96,8 @@ public class GameLoop {
                     .append(" 经验\n");
 
 
-            stageManager.nextStage();
-            currentMonster = stageManager.generateMonster(stageManager.getCurrentStage());
+            StageManager.nextStage(player);
+            currentMonster = StageManager.generateMonster(stageManager.getCurrentStage());
         }
 
         // 玩家攻击怪物
@@ -105,6 +107,7 @@ public class GameLoop {
                 .append(" 造成了 ")
                 .append(dmgToMonster)
                 .append(" 点伤害\n");
+        if (currentMonster.isDead()) return;
 
         // 怪物攻击玩家
         int dmgToPlayer =  doubleToInt(currentMonster.attack(player));
@@ -123,7 +126,7 @@ public class GameLoop {
 
         String logText = logBuilder.toString();
         if (!logText.isEmpty()) {
-            mainView.appendLog(logText);
+            BottomLeftView.appendLog(logText);
         }
 
 

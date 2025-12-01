@@ -143,5 +143,17 @@ public class Stats {
         this.expBonus += other.expBonus;
 
     }
+        public void mul(Stats other) {
+        this.maxHp *= other.maxHp * 0.01 + 1;
+        this.armor *= other.armor * 0.01 + 1;
+        this.attack *= other.attack * 0.01 + 1;
+        this.attackSpeed *= other.attackSpeed * 0.01 + 1;
+        this.critDamage *= other.critDamage * 0.01 + 1;
+        this.critChance *= other.critChance * 0.01 + 1;
+        this.goldBonus *= other.goldBonus * 0.01 + 1;
+        this.expBonus *= other.expBonus * 0.01 + 1;
+    }
+
+
     public void clear(){};
 }
