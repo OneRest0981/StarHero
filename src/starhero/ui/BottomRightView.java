@@ -29,12 +29,12 @@ public class BottomRightView {
     public BottomRightView(Player player){
         // 右侧升级面板整体样式
         root.getStyleClass().add("upgrade-panel");
+        // 金币文字样式
+        goldLable.getStyleClass().add("gold-label");
         HBox goldRow = new HBox();
         goldRow.setAlignment(Pos.CENTER_RIGHT);
         goldRow.getChildren().add(goldLable);
 
-        // 金币文字样式
-        goldLable.getStyleClass().add("gold-label");
 
         // 创建每排的横 HBOX
         HBox row1 = new HBox(20);
@@ -46,14 +46,14 @@ public class BottomRightView {
         HBox row4 = new HBox(20);
         row4.getChildren().addAll(goldBonusButton, expBonusButton);
         // 升级按钮统一样式类
-        maxHpButton.getStyleClass().add("upgrade-button");
-        armorButton.getStyleClass().add("upgrade-button");
-        attackButton.getStyleClass().add("upgrade-button");
-        attackSpeedButton.getStyleClass().add("upgrade-button");
-        critChanceButton.getStyleClass().add("upgrade-button");
-        critDamageButton.getStyleClass().add("upgrade-button");
-        goldBonusButton.getStyleClass().add("upgrade-button");
-        expBonusButton.getStyleClass().add("upgrade-button");
+//        maxHpButton.getStyleClass().add("upgrade-button");
+//        armorButton.getStyleClass().add("upgrade-button");
+//        attackButton.getStyleClass().add("upgrade-button");
+//        attackSpeedButton.getStyleClass().add("upgrade-button");
+//        critChanceButton.getStyleClass().add("upgrade-button");
+//        critDamageButton.getStyleClass().add("upgrade-button");
+//        goldBonusButton.getStyleClass().add("upgrade-button");
+//        expBonusButton.getStyleClass().add("upgrade-button");
 
 
 
@@ -62,9 +62,8 @@ public class BottomRightView {
 
         // 合并至root
         root.setAlignment(Pos.TOP_CENTER);
-        root.setSpacing(16);
+        root.setSpacing(160);
         root.getChildren().addAll(goldRow, row1, row2, row3, row4);
-        root.setPadding(new Insets(50));
 
         maxHpButton.setOnAction(
                 event -> player.upgradeMaxHpWithGold()

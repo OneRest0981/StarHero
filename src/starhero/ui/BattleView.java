@@ -38,9 +38,12 @@ public class BattleView {
     // 蒙版
     private Rectangle overlay = new Rectangle();
 
+    // 背景
+    private ImageView bgView;
+
     // 顶部战斗区域
     public BattleView() {
-        // Lable调整
+        // label调整
         playerNameLabel.getStyleClass().add("battle-name-label");
         monsterNameLabel.getStyleClass().add("battle-name-label");
         playerHpLabel.getStyleClass().add("battle-hp-label");
@@ -74,10 +77,10 @@ public class BattleView {
         VBox playerBox = new VBox(5);
         playerBox.setAlignment(Pos.CENTER);
         playerBox.getChildren().addAll(
-                playerImageView,
                 playerNameLabel,
                 playerHpLabel,
-                playerHpBar
+                playerHpBar,
+                playerImageView
         );
 
         // 怪物布局
@@ -85,10 +88,10 @@ public class BattleView {
         VBox monsterBox = new VBox(5);
         monsterBox.setAlignment(Pos.CENTER);
         monsterBox.getChildren().addAll(
-                monsterImageView,
                 monsterNameLabel,
                 monsterHpLabel,
-                monsterHpBar
+                monsterHpBar,
+                monsterImageView
         );
 
 
@@ -103,31 +106,28 @@ public class BattleView {
                         getClass().getResourceAsStream("/images/background/default.png")
                 )
         );
+        // 创建背景视图
+        bgView = new ImageView(bgImage);
+        bgView.setPreserveRatio(false);     // 是否按比例缩放，你可以切换 true/false 看效果
+        bgView.setSmooth(false);            // 像素风强烈建议 false
 
-        BackgroundSize bgSize = new BackgroundSize(
-                BackgroundSize.AUTO, BackgroundSize.AUTO,
-                false, false, true, false
-        );
-        BackgroundImage backgroundImage = new BackgroundImage(
-                bgImage,
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundPosition.CENTER,
-                bgSize
-        );
-        root.setBackground(new Background(backgroundImage));
 
-        //  蒙版
-        overlay.setFill(Color.rgb(0, 0, 0, 0.3));
+        // 绑定背景尺寸到 BattleView 区域
+        bgView.fitWidthProperty().set(1200);
+        bgView.fitHeightProperty().set(350);
 
-        // 蒙版尺寸跟着根节点变
-        overlay.widthProperty().bind(root.widthProperty());
-        overlay.heightProperty().bind(root.heightProperty());
+        // 控制背景偏移
+        bgView.setTranslateY(-40);  // 往上移动 40px（你可以调整成任意数字）
+        bgView.setTranslateX(0);    // 如果左右需要微调，也可以改
 
-        // =========================
-        //  叠加顺序：背景(在 Background 里) -> overlay -> 内容
-        // =========================
-        root.getChildren().addAll(overlay, contentBox);
+//        //  蒙版
+//        overlay.setFill(Color.rgb(0, 0, 0, 0.1));
+//
+//        // 蒙版尺寸跟着根节点变
+//        overlay.widthProperty().bind(root.widthProperty());
+//        overlay.heightProperty().bind(root.heightProperty());
+
+        root.getChildren().addAll(bgView, contentBox);
 
     }
 

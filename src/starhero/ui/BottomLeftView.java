@@ -26,21 +26,25 @@ public class BottomLeftView {
 
 
     public BottomLeftView(Player player){
-        root.getStyleClass().add("log-panel"); // 增加root样式
-        logArea.getStyleClass().add("battle-log-area"); // 增加logArea样式
-        prevButton.getStyleClass().add("stage-button"); // 上下层按钮样式
-        nextButton.getStyleClass().add("stage-button");
+//        root.getStyleClass().add("log-panel"); // 增加root样式
+//        logArea.getStyleClass().add("battle-log-area"); // 增加logArea样式
+//        prevButton.getStyleClass().add("stage-button"); // 上下层按钮样式
+//        nextButton.getStyleClass().add("stage-button");
 
 
 
         // 创建一个横 HBox 控制按钮
-        HBox stageControl = new HBox(20);
+        HBox stageControl = new HBox(100);
         stageControl.getChildren().addAll(prevButton, nextButton); // 切换层数按钮
         Format.uniformButtonWidth(prevButton, nextButton); // 设置按钮大小
+        stageControl.setPadding(new Insets(0, 0, 0, 0));
 
+
+        logArea.setEditable(false);
+        logArea.setWrapText(true);
         // 设置log大小
-        logArea.setPrefWidth(200);
-        logArea.setPrefHeight(100);
+        logArea.setPrefWidth(300);
+        logArea.setPrefHeight(220);
 
         // 让log尽量长
         VBox.setVgrow(logArea, Priority.ALWAYS);

@@ -7,6 +7,7 @@ public class Item {
     ItemType itemType;
     Stats stats;
     String description;
+    private String spritePath;
 
     /**
      * 装备用
@@ -16,12 +17,13 @@ public class Item {
      * @param stats 属性
      * @param description 物品描述
      */
-    public Item(int id, String name, ItemType itemType, Stats stats, String description) {
+    public Item(int id, String name, ItemType itemType, Stats stats, String description, String spritePath) {
         this.id = id;
         this.name = name;
         this.itemType = itemType;
         this.stats = stats;
         this.description = description;
+        this.spritePath = spritePath;
     }
 
     /**
@@ -31,11 +33,12 @@ public class Item {
      * @param itemType 物品类型
      * @param description 物品描述
      */
-    public Item(int id, String name, ItemType itemType, String description) {
+    public Item(int id, String name, ItemType itemType, String description, String spritePath) {
         this.id = id;
         this.name = name;
         this.itemType = itemType;
         this.description = description;
+        this.spritePath = spritePath;
     }
 
 

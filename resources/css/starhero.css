@@ -1,8 +1,6 @@
 /* 整个窗口的基础样式 */
 .root {
-    /* 深色背景，避免底部大块白色 */
-    -fx-background-color: linear-gradient(to bottom, #070b1e, #02030a);
-
+    -fx-background-color: #565049;
     /* 统一字体 */
     -fx-font-family: "Microsoft YaHei UI", "Segoe UI", sans-serif;
     -fx-text-fill: #f5f7ff;
@@ -10,7 +8,7 @@
 
 /* 所有按钮的基础样式 */
 .button {
-    -fx-background-color: linear-gradient(to bottom, #3b4dff, #5b7cff);
+    -fx-background-color: linear-gradient(to bottom, #7b634c, #463c33);
     -fx-text-fill: #ffffff;
     -fx-font-size: 13px;
     -fx-font-weight: bold;
@@ -23,21 +21,21 @@
 
 /* 鼠标移上去的效果 */
 .button:hover {
-    -fx-background-color: linear-gradient(to bottom, #4c5eff, #7b8fff);
+    -fx-background-color: linear-gradient(to bottom, #463c33, #7b634c);
 }
 
 /* 按下去的效果 */
 .button:pressed {
     -fx-translate-y: 1;
-    -fx-background-color: linear-gradient(to bottom, #2a3cff, #4a5cff);
+    -fx-background-color: linear-gradient(to bottom, #a99079, #7b634c);
 }
 
 /* 文本输入/文本区域（你下面的战斗日志用的 TextArea） */
 .text-area {
-    -fx-control-inner-background: rgba(10, 15, 35, 0.95);
-    -fx-text-fill: #c7d0ff;
+    -fx-control-inner-background: #7b634c;
+    -fx-text-fill: #3a332c;
     -fx-font-size: 12px;
-    -fx-border-color: rgba(255, 255, 255, 0.1);
+    -fx-border-color: #3a332c;
     -fx-border-width: 1;
     -fx-background-radius: 6;
     -fx-border-radius: 6;
@@ -77,10 +75,10 @@
 /* ========================= */
 
 .upgrade-panel {
-    -fx-background-color: rgba(15, 15, 30, 0.95);
+    -fx-background-color: #988370;
     -fx-background-radius: 16;
     -fx-border-radius: 16;
-    -fx-border-color: rgba(255, 255, 255, 0.08);
+    -fx-border-color: #988370;
     -fx-border-width: 1;
     -fx-padding: 16;
     -fx-spacing: 12;
